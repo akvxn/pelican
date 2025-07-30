@@ -13,33 +13,25 @@ async function init() {
 
   if (isAuthenticated) {
     const user = await logtoClient.getUserInfo();
-    if (statusEl) statusEl.textContent = `Connecté : ${user.name || user.sub}`;
-    if (loginBtn) loginBtn.style.display = 'none';
-    if (logoutBtn) logoutBtn.style.display = 'inline-block';
+    statusEl.textContent = `Connecté : ${user.name || user.sub}`;
+    loginBtn.style.display = 'none';
+    logoutBtn.style.display = 'inline-block';
   } else {
-    if (statusEl) statusEl.textContent = 'Non connecté';
-    if (loginBtn) loginBtn.style.display = 'inline-block';
-    if (logoutBtn) logoutBtn.style.display = 'none';
+    statusEl.textContent = 'Non connecté';
+    loginBtn.style.display = 'inline-block';
+    logoutBtn.style.display = 'none';
   }
 }
 
 window.addEventListener('load', () => {
-  // On attend que le DOM soit prêt avant d’ajouter les listeners
-  const loginBtn = document.getElementById('login');
-  const logoutBtn = document.getElementById('logout');
+  document.getElementById('login')?.addEventListener('click', () => {
+    logtoClient.signIn();
+  });
 
-  if (loginBtn) {
-    loginBtn.addEventListener('click', () => {
-      logtoClient.signIn();
-    });
-  }
-
-  if (logoutBtn) {
-    logoutBtn.addEventListener('click', async () => {
-      await logtoClient.signOut();
-      window.location.reload();
-    });
-  }
+  document.getElementById('logout')?.addEventListener('click', async () => {
+    await logtoClient.signOut();
+    window.location.reload();
+  });
 
   init();
 });
