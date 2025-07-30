@@ -1,5 +1,7 @@
 import { logtoClient } from './clientLogto.js';
 
+console.log('logtoClient dans main.js', logtoClient);
+
 async function init() {
   if (window.location.pathname === '/callback') {
     await logtoClient.handleSignInCallback(window.location.href);
