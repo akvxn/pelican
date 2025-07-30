@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://unpkg.com/7.css">
     <link rel="icon" href="/image/pelican.ico">
+    <script type="module" src="./js/authentification.js" defer></script>
     <title>pélican</title>
 
   </head>
@@ -25,11 +26,22 @@
       </div>
       <div class="window-body has-space">
         <menu role="tablist" aria-label="Window with Tabs">
-          <button role="tab" aria-controls="presentation" aria-selected="true">présentation</button>
+          <button role="tab" aria-controls="accueil" aria-selected="true">accueil</button>
+          <button role="tab" aria-controls="presentation">présentation</button>
           <button role="tab" aria-controls="aze">à propos du site</button>
         </menu>
 
-        <article role="tabpanel" id="presentation">
+        <article role="tabpanel" id="accueil">
+       <div class="space-y-3">
+          <p>Connectez vous à pélican.fr depuis notre service Logto</p>
+          <button id="login">se connecter</button>
+          <button id="logout" disabled>se déconnecter</button>
+          <p id="auth-status">Non connecté</p>
+
+        </article>
+
+
+        <article role="tabpanel" hidden id="presentation">
           <p>nous aimons tous les pélicans, alors aimons nous tous et battons nous contre le coronavirus et la variole du singe. 💥</p>
         </article>
 
