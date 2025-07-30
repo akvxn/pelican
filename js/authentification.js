@@ -1,21 +1,25 @@
 import { logtoClient } from './clientLogto.js';
 
-console.log('logtoClient dans main.js', logtoClient);
+const loginBtn = document.getElementById('login');
+const logoutBtn = document.getElementById('logout');
+const statusEl = document.getElementById('auth-status');
 
 async function init() {
   if (window.location.pathname === '/callback') {
-    await logtoClient.handleSignInCallback(window.location.href);
-    window.history.replaceState({}, document.title, '/');
+    try {
+      await logtoClient.handleSignInCallback(window.location.href);
+      window.location.href = '/'; // Redirige vers page d'accueil
+      return;
+    } catch (err) {
+      console.error('Erreur callback Logto', err);
+    }
   }
 
   const isAuthenticated = await logtoClient.isAuthenticated();
-  const loginBtn = document.getElementById('login');
-  const logoutBtn = document.getElementById('logout');
-  const statusEl = document.getElementById('auth-status');
 
   if (isAuthenticated) {
     const user = await logtoClient.getUserInfo();
-    statusEl.textContent = `Connecté : ${user.name || user.sub}`;
+    statusEl.textContent = `Connecté en tant que ${user.name || user.sub}`;
     loginBtn.style.display = 'none';
     logoutBtn.style.display = 'inline-block';
   } else {
@@ -25,15 +29,21 @@ async function init() {
   }
 }
 
-window.addEventListener('load', () => {
-  document.getElementById('login')?.addEventListener('click', () => {
+loginBtn.addEventListener('click', () => {
+  try {
     logtoClient.signIn();
-  });
+  } catch (err) {
+    console.error('Erreur lors de signIn', err);
+  }
+});
 
-  document.getElementById('logout')?.addEventListener('click', async () => {
+logoutBtn.addEventListener('click', async () => {
+  try {
     await logtoClient.signOut();
     window.location.reload();
-  });
-
-  init();
+  } catch (err) {
+    console.error('Erreur lors de signOut', err);
+  }
 });
+
+init();
