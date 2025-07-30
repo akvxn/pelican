@@ -31,36 +31,32 @@
         </menu>
 
         <article role="tabpanel" id="accueil">
-       <div class="space-y-3">
-          <p>Connectez vous à pélican.fr depuis notre service Logto</p>
-          <button id="login">se connecter</button>
-          <button id="logout" disabled>se déconnecter</button>
-          <p id="auth-status">Non connecté</p>
-         <script type="module" src="./js/clientLogto.js"></script>
-         <script type="module" src="./js/authentification.js" defer></script>
+          <div class="space-y-3">
+            <p>Connectez vous à pélican.fr depuis notre service Logto</p>
+            <button id="login">se connecter</button>
+            <button id="logout" style="display:none;">se déconnecter</button>
+            <p id="auth-status">Non connecté</p>
+          </div>
         </article>
-
 
         <article role="tabpanel" hidden id="presentation">
           <p>nous aimons tous les pélicans, alors aimons nous tous et battons nous contre le coronavirus et la variole du singe. 💥</p>
         </article>
 
         <article role="tabpanel" hidden id="aze">
-            <div class="space-y-3">
-      <p>
-          pélican.fr est un site à but humoristique, comme l'indique son nom assez "attirant". Il pourra regrouper plusieurs projets. Il est prévu que je développe
-          une intelligence artificielle avec ce nom, mais ça prendra encore du temps, environ... 4 ans ! xD
-      </p>        
-      <p>
-          Le site est principalement développé par Alfaa (webmaster). Vous pouvez retrouver sur GitHub le code source du site sur le compte de <a href="https://github.com/akvxn">@akvxn</a> (moi). Donc n'hésitez surtout pas à l'utiliser
-          pour vous aider dans vos futurs projets.
-      </p>
-      <p>
-          Pour contacter le webmaster, vous pouvez directement envoyer un mail à alfaa@pélican.fr, ou bien m'ajouter sur Discord (@1jnv).
-      </p>
-
-            </div>
-
+          <div class="space-y-3">
+            <p>
+              pélican.fr est un site à but humoristique, comme l'indique son nom assez "attirant". Il pourra regrouper plusieurs projets. Il est prévu que je développe
+              une intelligence artificielle avec ce nom, mais ça prendra encore du temps, environ... 4 ans ! xD
+            </p>        
+            <p>
+              Le site est principalement développé par Alfaa (webmaster). Vous pouvez retrouver sur GitHub le code source du site sur le compte de <a href="https://github.com/akvxn">@akvxn</a> (moi). Donc n'hésitez surtout pas à l'utiliser
+              pour vous aider dans vos futurs projets.
+            </p>
+            <p>
+              Pour contacter le webmaster, vous pouvez directement envoyer un mail à alfaa@pélican.fr, ou bien m'ajouter sur Discord (@1jnv).
+            </p>
+          </div>
         </article>
 
         <section style="display: flex; justify-content: flex-end; gap: 6px">
@@ -87,6 +83,8 @@
         });
       });
     </script>
+    <script type="module" src="./js/clientLogto.js"></script>
+    <script type="module" src="./js/authentification.js"></script>
   </body>
 
 </html>
