@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html> 
+
+  <head>
+
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://unpkg.com/7.css">
+    <link rel="icon" href="pelican.ico">
+    <title>Pélican 🦜</title>
+
+  </head>
+  
+  <body class="min-h-screen flex items-center justify-center bg-[url('windows.jpg')] bg-cover bg-center backdrop-blur-lg">
+    <div class="window active" style="max-width: 400px">
+      <div class="title-bar">
+        <div class="title-bar-text">pélican !!!</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="window-body has-space">
+        <menu role="tablist" aria-label="Window with Tabs">
+          <button role="tab" aria-controls="presentation" aria-selected="true">présentation</button>
+          <button role="tab" aria-controls="aze">à propos du site</button>
+        </menu>
+
+        <article role="tabpanel" id="presentation">
+          <p>nous aimons tous les pélicans, alors aimons nous tous et battons nous contre le coronavirus et la variole du singe. 💥</p>
+        </article>
+
+        <article role="tabpanel" hidden id="aze">
+            <div class="space-y-3">
+      <p>
+          pélican.fr est un site à but humoristique, comme l'indique son nom assez "attirant". Il pourra regrouper plusieurs projets. Il est prévu que je développe
+          une intelligence artificielle avec ce nom, mais ça prendra encore du temps, environ... 4 ans ! xD
+      </p>        
+      <p>
+          Le site est principalement développé par Alfaa (webmaster). Vous pouvez retrouver sur GitHub le code source du site sur le compte de @akvxn (moi). Donc n'hésitez surtout pas à l'utiliser
+          pour vous aider dans vos futurs projets.
+      </p>
+      <p>
+          Pour contacter le webmaster, vous pouvez directement envoyer un mail à alfaa@pélican.fr, ou bien m'ajouter sur Discord (@1jnv).
+      </p>
+
+            </div>
+        </article>
+
+        <section style="display: flex; justify-content: flex-end; gap: 6px">
+          <button class="default">OK</button>
+          <button>Cancel</button>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      const tabs = document.querySelectorAll('[role="tab"]');
+      const tabPanels = document.querySelectorAll('[role="tabpanel"]');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          // Déselectionne tous les onglets
+          tabs.forEach(t => t.setAttribute('aria-selected', 'false'));
+          // Masque tous les panels
+          tabPanels.forEach(panel => panel.hidden = true);
+          // Active l'onglet cliqué
+          tab.setAttribute('aria-selected', 'true');
+          const id = tab.getAttribute('aria-controls');
+          document.getElementById(id).hidden = false;
+        });
+      });
+    </script>
+  </body>
+
+</html>
